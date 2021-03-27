@@ -1,4 +1,6 @@
+using Merchant.Infrastructure;
 using Merchant.Infrastructure.Context;
+using Merchant.WebAPI.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +34,7 @@ namespace Merchant.WebAPI
                 options.ConnectionString = Configuration.GetSection("MongoDbSettings:ConnectionString").Value;
                 options.Database = Configuration.GetSection("MongoDbSettings:Database").Value;
             });
+            services.RegisterInfrastructureServices();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -54,7 +57,7 @@ namespace Merchant.WebAPI
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseMiddleware<ExceptionMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

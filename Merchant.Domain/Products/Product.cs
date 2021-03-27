@@ -1,4 +1,5 @@
-﻿using Merchant.Domain.Core.Base;
+﻿using Merchant.Domain.Categories;
+using Merchant.Domain.Core.Base;
 using Merchant.Domain.Shared;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,8 @@ namespace Merchant.Domain.Products
         public string Name { get; private set; }
         public Money Price { get; private set; }
         public DateTime CreationDate { get; }
-
-        protected Product(string name, Money price)
+        public Category Category{ get; set; }
+        protected Product(string name, Category category,Money price)
         {
             if (string.IsNullOrEmpty(name))
                 throw new BusinessException("Name can not be null or empty");
@@ -22,7 +23,8 @@ namespace Merchant.Domain.Products
             Name = name;
             Price = price ?? throw new ArgumentNullException(nameof(price));
             CreationDate = DateTime.UtcNow;
+            Category = category;
         }
-        public static Product CreateProduct(string name, Money price) => new Product(name, price);
+        public static Product CreateProduct(string name, Category category, Money price) => new Product(name,category, price);
     }
 }

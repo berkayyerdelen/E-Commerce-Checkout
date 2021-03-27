@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Merchant.Application.Products;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,5 +13,16 @@ namespace Merchant.WebAPI.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public ProductController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+        [HttpPost("CreateProduct")]
+        public async Task<IActionResult> CreateProductAsync(CreateProductCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
     }
 }
