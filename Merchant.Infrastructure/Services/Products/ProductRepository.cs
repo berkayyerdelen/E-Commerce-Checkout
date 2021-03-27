@@ -20,30 +20,25 @@ namespace Merchant.Infrastructure.Services.Products
             _context = context;
         }
 
-        public async Task<bool> DeleteProductAsync(Product product)
+        public async Task DeleteProductAsync(Expression<Func<Product, bool>> expression)
         {
-            var filter = Builders<Product>.Filter.Eq(x => x, product);
-            var result = await _context.Products.DeleteOneAsync(filter);
-            return result.IsAcknowledged;
+            await _context.Products.DeleteOneAsync(expression);
         }
 
-        public async Task<bool> DeleteProductByIdAsync(string productId)
+        public async Task DeleteProductByIdAsync(string productId)
         {
-            var filter = Builders<Product>.Filter.Eq(x => x.Id, productId);
-            var result = await _context.Products.DeleteOneAsync(filter);
-            return result.IsAcknowledged;
+           await _context.Products.DeleteOneAsync(x => x.Id == productId);
         }
 
-        public async Task<Product> GetProductAsync(string productId)
+        public async Task<Product> GetProductAsync(Expression<Func<Product, bool>> expression = null)
         {
-            var filter = Builders<Product>.Filter.Eq(x => x.Id, productId);
-            var product = await _context.Products.FindAsync(filter);
-            return product.FirstOrDefault();
+            var result = await _context.Products.FindAsync(expression);
+            return result.FirstOrDefault();
         }
 
-        public async Task<List<Product>> GetProductsAsync()
+        public async Task<List<Product>> GetProductsAsync(Expression<Func<Product, bool>> expression = null)
         {
-            var products = await _context.Products.FindAsync(new BsonDocument());
+            var products = await _context.Products.FindAsync(expression);
             return products.ToList();
         }
 

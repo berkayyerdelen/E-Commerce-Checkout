@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Merchant.Domain.Products
 {
-    public interface IProductRepository:IRepository<Product>
+    public interface IProductRepository : IRepository<Product>
     {
         Task InsertProductAsync(Product product);
-        Task<List<Product>> GetProductsAsync();
-        Task<Product> GetProductAsync(string productId);
+        Task<List<Product>> GetProductsAsync(Expression<Func<Product, bool>> expression = null);
+        Task<Product> GetProductAsync(Expression<Func<Product, bool>> expression = null);
         Task UpdateProductAsync(string productId, Product product);
-        Task<bool> DeleteProductAsync(Product product);
-        Task<bool> DeleteProductByIdAsync(string productId);
+        Task DeleteProductAsync(Expression<Func<Product, bool>> expression);
+        Task DeleteProductByIdAsync(string productId);
     }
 }
