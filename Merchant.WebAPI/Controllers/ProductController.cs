@@ -24,5 +24,20 @@ namespace Merchant.WebAPI.Controllers
         {
             return Ok(await _mediator.Send(command));
         }
+        [HttpPut("UpdateCategory")]
+        public async Task<IActionResult> UpdateProductAsync(UpdateProductCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+        [HttpDelete("DeleteProduct")]
+        public async Task<IActionResult> DeleteProductAsync(DeleteProductCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+        [HttpGet("Products")]
+        public async Task<IActionResult> GetProductsAsync()
+        {
+            return Ok(await _mediator.Send(new GetProductsQuery()));
+        }
     }
 }
