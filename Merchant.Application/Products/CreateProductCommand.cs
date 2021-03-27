@@ -21,7 +21,7 @@ namespace Merchant.Application.Products
     {
         public Task<Unit> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException(); 
         }
     }
 }
