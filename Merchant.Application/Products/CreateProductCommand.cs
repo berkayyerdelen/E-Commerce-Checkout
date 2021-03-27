@@ -20,6 +20,12 @@ namespace Merchant.Application.Products
     public sealed class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
     {
         private readonly IProductRepository _productRepository;
+
+        public CreateProductCommandHandler(IProductRepository productRepository)
+        {
+            _productRepository = productRepository;
+        }
+
         public Task<Unit> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
             _productRepository.InsertProductAsync(Product.CreateProduct(request.Name, request.Category, request.Price));
