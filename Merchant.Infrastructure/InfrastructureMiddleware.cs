@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace Merchant.Infrastructure
 {
-    public static class IntrastructureMiddleware
+    public static class InfrastructureMiddleware
     {
         public static void RegisterInfrastructureServices(this IServiceCollection services)
         {
