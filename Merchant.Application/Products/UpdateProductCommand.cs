@@ -30,7 +30,7 @@ namespace Merchant.Application.Products
         public async Task<Unit> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
             await _productRepository.UpdateProductAsync(request.Id, Product.CreateProduct(request.Name, request.Category, request.Price));
-            return Unit.Task;
+            return Unit.Value;
         }
     }
 }
