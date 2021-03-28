@@ -11,14 +11,13 @@ namespace Merchant.Domain.Carts
 {
     public class Cart : Entity, IAggregateRoot
     {
-        public Customer Customer { get; private set; }
-        public IReadOnlyCollection<CartItem> Items => _items.AsReadOnly();
-        private readonly List<CartItem> _items = new List<CartItem>();
+        public Customer Customer { get; private set; }      
+        public  List<CartItem> Items { get; set; }
         public Cart(Customer customer)
         {
             if (customer == null)
                 throw new BusinessException("The customer is required.");
-
+          
             Customer = customer;
         }
         public Cart AddItem(Product product, int quantity)
@@ -26,24 +25,25 @@ namespace Merchant.Domain.Carts
             if (product is null) throw new BusinessException("The cart item must have a product");
             if (quantity <= 0) throw new BusinessException("The product quantity must be at last 1");
             var cartItem = CartItem.CreateCartItem(product, quantity);
-            _items.Add(cartItem);
+            Items ??= new List<CartItem>();
+            Items.Add(cartItem);
             return this;
         }
         public void RemoveItem(string cartItemId)
         {
-            var cartItem = _items.FirstOrDefault(x => x.Id == cartItemId);
+            var cartItem = Items.FirstOrDefault(x => x.Id == cartItemId);
             if (cartItem is null) throw new BusinessException("Invalid cart item");
-            _items.Remove(cartItem);
+            Items.Remove(cartItem);
         }
         public Cart ChangeCart(Product product, int quantity)
         {
             if (product is null) throw new BusinessException("The cart item must have a product");
-            var cartItem = _items.FirstOrDefault(x => x.Id == product.Id);
+            var cartItem = Items.FirstOrDefault(x => x.Id == product.Id);
             if (cartItem is null) AddItem(product, quantity);
             else cartItem.ChangeQuantity(quantity);
             return this;
         }
-        public void ClearCart() => _items.Clear();
+        public void ClearCart() => Items.Clear();
       
     }
 }

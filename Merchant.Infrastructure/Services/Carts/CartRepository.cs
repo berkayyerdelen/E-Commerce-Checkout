@@ -35,7 +35,7 @@ namespace Merchant.Infrastructure.Services.Carts
 
         public async Task UpdateCartAsync(string cartId, Cart cart)
         {
-            await _context.Carts.ReplaceOneAsync(x => x.Id==cartId, cart);
+           await _context.Carts.ReplaceOneAsync(x => x.Id==cartId, cart);         
         }
     }
 }

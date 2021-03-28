@@ -19,7 +19,6 @@ namespace Merchant.Domain.Products
         {
             if (string.IsNullOrEmpty(name))
                 throw new BusinessException("Name can not be null or empty");
-
             Name = name;
             Price = price ?? throw new ArgumentNullException(nameof(price));
             CreationDate = DateTime.UtcNow;
