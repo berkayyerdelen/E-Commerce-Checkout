@@ -11,8 +11,6 @@ namespace Merchant.Domain.Customers
         public FullName FullName { get;private set; }
         protected Customer(Email email, FullName fullName)
         {
-            if (Email is null || fullName is null)
-                throw new BusinessException("Emeail or FullName can not be null");
             Email = email;
             FullName = fullName;
         }
