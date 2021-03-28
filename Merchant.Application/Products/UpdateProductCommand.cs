@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Merchant.Application.Products.DTO;
 using Merchant.Domain.Categories;
 using Merchant.Domain.Products;
 using Merchant.Domain.Shared;
@@ -14,9 +15,9 @@ namespace Merchant.Application.Products
     public class UpdateProductCommand:IRequest
     {
         public string Id { get; set; }
-        public string Name { get; private set; }
-        public Money Price { get; private set; }
-        public Category Category { get; set; }
+        public string Name { get;  set; }
+        public MoneyDTO Price { get; set; }
+        public CategoryDTO Category { get; set; }
     }
     public sealed class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand>
     {
@@ -29,7 +30,11 @@ namespace Merchant.Application.Products
 
         public async Task<Unit> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
-            await _productRepository.UpdateProductAsync(request.Id, Product.CreateProduct(request.Name, request.Category, request.Price));
+            await _productRepository.UpdateProductAsync(request.Id, Product.CreateProduct(request.Name, Category.CreateCategory(
+                request.Category.CategoryName,
+                request.Category.Description),
+                new Money(request.Price.Value,
+                new Currency(request.Price.Unit.Unit))));
             return Unit.Value;
         }
     }
