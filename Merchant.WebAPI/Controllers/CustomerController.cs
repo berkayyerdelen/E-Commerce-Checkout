@@ -31,7 +31,7 @@ namespace Merchant.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> DeleteUserAsync(DeleteCustomerCommand command)
         {
-            return Ok(await _mediator.Send(command);
+            return Ok(await _mediator.Send(command));
         }
     }
 }
