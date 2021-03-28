@@ -1,5 +1,6 @@
 using Merchant.Infrastructure;
 using Merchant.Infrastructure.Context;
+using Merchant.Application;
 using Merchant.WebAPI.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,6 +15,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
+using Merchant.Application.Products;
+using System.Reflection;
 
 namespace Merchant.WebAPI
 {
@@ -35,6 +39,7 @@ namespace Merchant.WebAPI
                 options.Database = Configuration.GetSection("MongoDbSettings:Database").Value;
             });
             services.RegisterInfrastructureServices();
+            services.AddMediatR(typeof(CreateProductCommand).GetTypeInfo().Assembly);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

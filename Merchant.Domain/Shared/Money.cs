@@ -17,7 +17,7 @@ namespace Merchant.Domain.Shared
             Unit = unit;
         }
 
-        
+
         protected override IEnumerable<object> GetAtomicValues()
         {
             yield return Value;

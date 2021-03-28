@@ -26,7 +26,7 @@ namespace Merchant.Application.Categories
         public async Task<Unit> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
             await _categoryRepository.InsertCategoryAsync(Category.CreateCategory(request.Name, request.Description));
-            return Unit.Task;
+            return Unit.Value;
         }
     }
 }
