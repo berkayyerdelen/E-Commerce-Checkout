@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Merchant.Application.Customers
 {
-    public class DeleteCustomerCommand:IRequest
+    public class DeleteCustomerCommand : IRequest
     {
         public string UserId { get; set; }
 
@@ -27,9 +27,10 @@ namespace Merchant.Application.Customers
             _customerRepository = customerRepository;
         }
 
-        public Task<Unit> Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)
         {
-            _customerRepository.DeleteCustomerAsync(x => x.Id == request.UserId);
+            await _customerRepository.DeleteCustomerAsync(x => x.Id == request.UserId);
+            return Unit.Value;
         }
     }
 }

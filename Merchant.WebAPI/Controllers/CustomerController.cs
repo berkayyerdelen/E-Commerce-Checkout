@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Merchant.Application.Customers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,6 +18,20 @@ namespace Merchant.WebAPI.Controllers
         public CustomerController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+        [HttpPost("CreateCustomer")]
+        [ProducesDefaultResponseType(typeof(Unit))]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<IActionResult> CreateUserAsync(CreateCustomerCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+        [HttpDelete("DeleteCustomer")]
+        [ProducesDefaultResponseType(typeof(Unit))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> DeleteUserAsync(DeleteCustomerCommand command)
+        {
+            return Ok(await _mediator.Send(command);
         }
     }
 }

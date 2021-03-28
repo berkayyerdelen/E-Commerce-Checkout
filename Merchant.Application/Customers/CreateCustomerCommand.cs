@@ -24,11 +24,11 @@ namespace Merchant.Application.Customers
             _customerRepository = customerRepository;
         }
 
-        public Task<Unit> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
         {
-            _customerRepository.InsertCustomerAsync(Customer.CreateCustomer(new Email(request.Email.Mail)
+           await _customerRepository.InsertCustomerAsync(Customer.CreateCustomer(new Email(request.Email.Mail)
                 , new FullName(request.FullName.FirstName, request.FullName.MiddleName, request.FullName.LastName)));
-            return Unit.Task;
+            return Unit.Value;
         }
     }
 }
