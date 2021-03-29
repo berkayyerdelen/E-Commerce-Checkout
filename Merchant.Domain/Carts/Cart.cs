@@ -11,13 +11,13 @@ namespace Merchant.Domain.Carts
 {
     public class Cart : Entity, IAggregateRoot
     {
-        public Customer Customer { get; private set; }      
-        public  List<CartItem> Items { get; set; }
+        public Customer Customer { get; private set; }
+        public List<CartItem> Items { get; private set; }
         public Cart(Customer customer)
         {
             if (customer == null)
                 throw new BusinessException("The customer is required.");
-          
+
             Customer = customer;
         }
         public Cart AddItem(Product product, int quantity)
@@ -44,6 +44,6 @@ namespace Merchant.Domain.Carts
             return this;
         }
         public void ClearCart() => Items.Clear();
-      
+
     }
 }
