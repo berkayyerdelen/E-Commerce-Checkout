@@ -21,6 +21,14 @@ namespace Merchant.Infrastructure.Services.Carts
         public async Task DeleteCartAsync(Expression<Func<Cart, bool>> expression)
             => await _context.Carts.DeleteOneAsync(expression);
 
+        public async Task DeleteCartItemAsync(string cartId, string cartItemId)
+        {
+            var update = Builders<Cart>.Update.PullFilter(p => p.Items,
+                                                 f => f.Id == cartItemId);
+            var result = await _context.Carts.FindOneAndUpdateAsync(x => x.Id == cartId, update);
+
+        }
+
         public async Task<Cart> GetCartAsync(Expression<Func<Cart, bool>> expression)
         {
             var result = await _context.Carts.FindAsync(expression);
@@ -35,7 +43,7 @@ namespace Merchant.Infrastructure.Services.Carts
 
         public async Task UpdateCartAsync(string cartId, Cart cart)
         {
-           await _context.Carts.ReplaceOneAsync(x => x.Id==cartId, cart);         
+            await _context.Carts.ReplaceOneAsync(x => x.Id == cartId, cart);
         }
     }
 }

@@ -14,5 +14,6 @@ namespace Merchant.Domain.Carts
         Task DeleteCartAsync(Expression<Func<Cart, bool>> expression);
         Task UpdateCartAsync(string cartId, Cart cart);
         Task<Cart> GetCartAsync(Expression<Func<Cart, bool>> expression = null);
+        Task DeleteCartItemAsync(string cartId, string cartItemId);
     }
 }
