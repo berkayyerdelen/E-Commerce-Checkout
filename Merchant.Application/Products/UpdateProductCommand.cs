@@ -33,8 +33,8 @@ namespace Merchant.Application.Products
             await _productRepository.UpdateProductAsync(request.Id, Product.CreateProduct(request.Name, Category.CreateCategory(
                 request.Category.CategoryName,
                 request.Category.Description),
-                new Money(request.Price.Value,
-                new Currency(request.Price.Unit.Unit))));
+                Money.SetMoney(request.Price.Value,
+                Currency.SetCurrency(request.Price.Unit.Unit))));
             return Unit.Value;
         }
     }

@@ -33,9 +33,9 @@ namespace Merchant.Application.Products
         {
             _productRepository.InsertProductAsync(Product.CreateProduct(request.Name, Category.CreateCategory(
                 request.Category.CategoryName,
-                request.Category.Description), 
-                new Money(request.Price.Value,
-                new Currency(request.Price.Unit.Unit))));
+                request.Category.Description),
+                Money.SetMoney(request.Price.Value,
+                Currency.SetCurrency(request.Price.Unit.Unit))));
             return Unit.Task;
         }
     }

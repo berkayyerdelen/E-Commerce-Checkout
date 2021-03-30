@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Merchant.Application.Customers
 {
-    public class CreateCustomerCommand:IRequest
+    public class CreateCustomerCommand : IRequest
     {
         public EmailDTO Email { get; set; }
         public FullNameDTO FullName { get; set; }
@@ -26,8 +26,8 @@ namespace Merchant.Application.Customers
 
         public async Task<Unit> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
         {
-           await _customerRepository.InsertCustomerAsync(Customer.CreateCustomer(new Email(request.Email.Mail)
-                , new FullName(request.FullName.FirstName, request.FullName.MiddleName, request.FullName.LastName)));
+            await _customerRepository.InsertCustomerAsync(Customer.CreateCustomer(new Email(request.Email.Mail)
+                 , FullName.SetFullName(request.FullName.FirstName, request.FullName.MiddleName, request.FullName.LastName)));
             return Unit.Value;
         }
     }

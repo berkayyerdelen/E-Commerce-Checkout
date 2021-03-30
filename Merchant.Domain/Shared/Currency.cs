@@ -12,6 +12,7 @@ namespace Merchant.Domain.Shared
                 throw new BusinessException("Unit can not be null or empty.");
             Unit = unit;
         }
+        public static Currency SetCurrency (string unit) => new Currency(unit);
         public static Currency TurkishLira => new Currency("TRY");
         public static Currency Euro => new Currency("€");
         public static Currency Dolar => new Currency("$");

@@ -16,6 +16,7 @@ namespace Merchant.Domain.Shared
             Value = value;
             Unit = unit;
         }
+        public static Money SetMoney(decimal value, Currency unit) => new Money(value, unit);
 
 
         protected override IEnumerable<object> GetAtomicValues()

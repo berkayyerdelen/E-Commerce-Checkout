@@ -14,6 +14,7 @@ namespace Merchant.Domain.Customers
             LastName = lastName;
         }
 
+        public static FullName SetFullName(string firstName, string middleName, string lastName) => new FullName(firstName, middleName, lastName);
         public string MiddleName { get; }
         public string LastName { get; }
 
