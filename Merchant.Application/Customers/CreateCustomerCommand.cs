@@ -26,7 +26,7 @@ namespace Merchant.Application.Customers
 
         public async Task<Unit> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
         {
-            await _customerRepository.InsertCustomerAsync(Customer.CreateCustomer(new Email(request.Email.Mail)
+            await _customerRepository.InsertCustomerAsync(Customer.CreateCustomer(Email.CreateEmail(request.Email.Mail)
                  , FullName.SetFullName(request.FullName.FirstName, request.FullName.MiddleName, request.FullName.LastName)));
             return Unit.Value;
         }

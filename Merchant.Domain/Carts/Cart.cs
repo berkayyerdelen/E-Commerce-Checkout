@@ -13,13 +13,15 @@ namespace Merchant.Domain.Carts
     {
         public Customer Customer { get; private set; }
         public List<CartItem> Items { get; private set; }
-        public Cart(Customer customer)
+        protected Cart(Customer customer)
         {
             if (customer == null)
                 throw new BusinessException("The customer is required.");
 
             Customer = customer;
+          
         }
+        
         public Cart AddItem(Product product, Quantity quantity)
         {
             if (product is null) throw new BusinessException("The cart item must have a product");
@@ -43,6 +45,6 @@ namespace Merchant.Domain.Carts
             return this;
         }
         public void ClearCart() => Items.Clear();
-
+        public static Cart CreateCart(Customer customer) => new Cart(customer);
     }
 }

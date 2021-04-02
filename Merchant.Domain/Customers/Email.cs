@@ -8,13 +8,14 @@ namespace Merchant.Domain.Customers
     {
         public string MailName { get;private set; }
         public DateTime CreationDate { get; private set; }
-        public Email(string mailName)
+        protected Email(string mailName)
         {
             if (string.IsNullOrEmpty(mailName))
                 throw new BusinessException("Emeail can not be null or empty");
             MailName = mailName;
             CreationDate = DateTime.UtcNow;
         }
+        public static Email CreateEmail(string mailName) => new Email(mailName);
 
         protected override IEnumerable<object> GetAtomicValues()
         {

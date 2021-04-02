@@ -7,7 +7,7 @@ namespace Merchant.Domain.Customers
     {
         public string FirstName { get; }
 
-        public FullName(string firstName, string middleName, string lastName)
+        protected FullName(string firstName, string middleName, string lastName)
         {
             FirstName = firstName;
             MiddleName = middleName;

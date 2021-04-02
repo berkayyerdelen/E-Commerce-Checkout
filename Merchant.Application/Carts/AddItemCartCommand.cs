@@ -31,12 +31,12 @@ namespace Merchant.Application.Carts
         public async Task<Unit> Handle(AddItemCartCommand request, CancellationToken cancellationToken)
         {
             var cart = await _cartRepository.GetCartAsync(x => x.Customer.Id == request.UserId);
-
+            
             cart.AddItem(Domain.Products.Product.CreateProduct(request.Product.ProductName,
                  Domain.Categories.Category.CreateCategory(request.Category.CategoryName, request.Category.Description),
                  Money.SetMoney(request.Product.Money.Value, 
                  Currency.SetCurrency(request.Product.Money.Unit.Unit))),
-                 Quantity.SetQuantity(request.Product.Quantity));                
+                 Quantity.SetQuantity(request.Product.Quantity));  
             await _cartRepository.UpdateCartAsync(cart.Id, cart);
             return Unit.Value;
 

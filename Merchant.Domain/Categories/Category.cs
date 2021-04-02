@@ -11,7 +11,7 @@ namespace Merchant.Domain.Categories
     {
         public string Name { get; private set; }
 
-        public Category(string name, string description)
+        protected Category(string name, string description)
         {
             if (string.IsNullOrEmpty(name)) throw new BusinessException("Category name can not be null");
             Name = name;

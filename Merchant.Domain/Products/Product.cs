@@ -13,8 +13,8 @@ namespace Merchant.Domain.Products
     {
         public string Name { get; private set; }
         public Money Price { get; private set; }
-        public DateTime CreationDate { get; }
-        public Category Category{ get; set; }
+        public DateTime CreationDate { get; private set; }
+        public Category Category{ get; private set; }
         protected Product(string name, Category category,Money price)
         {
             if (string.IsNullOrEmpty(name))

@@ -11,7 +11,7 @@ namespace Merchant.Domain.Carts
     {
         public int ProductQuantity { get;}
 
-        public Quantity(int productQuantity)
+        protected Quantity(int productQuantity)
         {
             ProductQuantity = productQuantity;
         }

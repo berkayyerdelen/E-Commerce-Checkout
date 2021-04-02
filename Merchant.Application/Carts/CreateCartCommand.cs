@@ -26,8 +26,9 @@ namespace Merchant.Application.Carts
 
         public async Task<Unit> Handle(CreateCartCommand request, CancellationToken cancellationToken)
         {
-            await _cartRepository.InsertCartAsync(new Cart(Customer.CreateCustomer(new Email(request.Customer.Email.Mail),
-                  FullName.SetFullName(request.Customer.FullName.FirstName, 
+            await _cartRepository.InsertCartAsync(Cart.CreateCart(Customer.CreateCustomer(
+                  Email.CreateEmail(request.Customer.Email.Mail),
+                  FullName.SetFullName(request.Customer.FullName.FirstName,
                   request.Customer.FullName.MiddleName,
                   request.Customer.FullName.LastName))));
             return Unit.Value;
