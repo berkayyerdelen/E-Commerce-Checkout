@@ -12,16 +12,7 @@ namespace Merchant.Domain.Core.Base
     {
         [BsonId]
         public string Id { get; set; } = Guid.NewGuid().ToString();
-
-        private List<INotification> _events { get; set; }
-        private IReadOnlyCollection<INotification> Events => _events?.AsReadOnly();
-        public void AddEvent(INotification @event)
-        {
-            _events ??= new List<INotification>();
-            _events.Add(@event);
-        }
-        public void RemoveEvent(INotification @event) => _events.Remove(@event);
-        public void ClearEvents() => _events.Clear();
+      
 
     }
 }
