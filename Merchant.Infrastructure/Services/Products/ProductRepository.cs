@@ -36,9 +36,9 @@ namespace Merchant.Infrastructure.Services.Products
             return result.FirstOrDefault();
         }
 
-        public async Task<List<Product>> GetProductsAsync(Expression<Func<Product, bool>> expression = null)
+        public async Task<List<Product>> GetProductsAsync()
         {
-            var products = await _context.Products.FindAsync(expression);
+            var products = await _context.Products.FindAsync(x=> true);
             return products.ToList();
         }
 

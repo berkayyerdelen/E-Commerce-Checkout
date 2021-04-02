@@ -9,7 +9,7 @@ namespace Merchant.Domain.Products
     public interface IProductRepository : IRepository<Product>
     {
         Task InsertProductAsync(Product product);
-        Task<List<Product>> GetProductsAsync(Expression<Func<Product, bool>> expression = null);
+        Task<List<Product>> GetProductsAsync();
         Task<Product> GetProductAsync(Expression<Func<Product, bool>> expression = null);
         Task UpdateProductAsync(string productId, Product product);
         Task DeleteProductAsync(Expression<Func<Product, bool>> expression);

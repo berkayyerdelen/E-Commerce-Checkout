@@ -14,7 +14,7 @@ namespace Merchant.Domain.Core.Base
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
         private List<INotification> _events { get; set; }
-        public IReadOnlyCollection<INotification> Events => _events?.AsReadOnly();
+        private IReadOnlyCollection<INotification> Events => _events?.AsReadOnly();
         public void AddEvent(INotification @event)
         {
             _events ??= new List<INotification>();
