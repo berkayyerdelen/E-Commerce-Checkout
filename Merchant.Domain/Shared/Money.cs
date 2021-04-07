@@ -11,7 +11,7 @@ namespace Merchant.Domain.Shared
     {
         public decimal Value { get; }
         public Currency Unit { get; }
-        public Money(decimal value, Currency unit)
+        protected Money(decimal value, Currency unit)
         {
             Value = value;
             Unit = unit;

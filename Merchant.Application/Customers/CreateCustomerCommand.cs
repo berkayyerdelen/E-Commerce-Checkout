@@ -1,6 +1,6 @@
 ﻿using MediatR;
+using Merchant.Application.Customers.DTO;
 using Merchant.Domain.Customers;
-using Merchant.Domain.Customers.UpsertCustomerCommandDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

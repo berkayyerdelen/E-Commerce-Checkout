@@ -1,4 +1,4 @@
-﻿using Merchant.Domain.Customers.UpsertCustomerCommandDTO;
+﻿using Merchant.Application.Customers.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

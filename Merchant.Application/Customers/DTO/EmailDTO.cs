@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Merchant.Domain.Customers.UpsertCustomerCommandDTO
+namespace Merchant.Application.Customers.DTO
 {
     public class EmailDTO
     {

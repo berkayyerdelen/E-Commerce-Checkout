@@ -1,4 +1,4 @@
-﻿namespace Merchant.Domain.Customers.UpsertCustomerCommandDTO
+﻿namespace Merchant.Application.Customers.DTO
 {
     public class FullNameDTO
     {

@@ -6,7 +6,7 @@ namespace Merchant.Domain.Shared
     public class Currency : ValueObject
     {
         public string Unit { get; }
-        public Currency(string unit)
+        protected Currency(string unit)
         {
             if (string.IsNullOrEmpty(unit))
                 throw new BusinessException("Unit can not be null or empty.");
